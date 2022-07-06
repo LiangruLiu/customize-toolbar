@@ -7,10 +7,10 @@ const path = require ("path")
 
 // 本函数通过修改package.json来实现功能
 exports.updateButtonConfig = function (buttonConfig) {
-	// let themeFilePath = path.join (__dirname, "../themes/ExtremeDark.json")  // 用__dirname获取当前模块的目录名
-	let data = JSON.parse (fs.readFileSync ("../package.json"))
-
-	fs.writeFileSync ("../package.json", JSON.stringify (person, null, "\t"))
+	const contribFilePath = path.join (__dirname, "../package.json")  // 用__dirname获取当前模块的目录名
+	let data = JSON.parse (fs.readFileSync (contribFilePath))
+	data["contributes"]["commands"] = data["contributes"]["commands"]
+	fs.writeFileSync (contribFilePath, JSON.stringify (data, null, "\t") + "\n")
 }
 
 

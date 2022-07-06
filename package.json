@@ -2,8 +2,18 @@
 	"name": "customize-toolbar",
 	"displayName": "Customize Toolbar",
 	"description": "A dark theme for VS Code made by LLR",
-	"categories": ["Themes"],
-	"keywords": ["black", "AMOLED", "dark", "night", "high-contrast", "theme", "vscode"],
+	"categories": [
+		"Themes"
+	],
+	"keywords": [
+		"black",
+		"AMOLED",
+		"dark",
+		"night",
+		"high-contrast",
+		"theme",
+		"vscode"
+	],
 	"publisher": "liangruliu",
 	"icon": "images/icon.png",
 	"version": "0.1.0",
@@ -145,8 +155,7 @@
 					"command": "customize-toolbar.command-2"
 				}
 			],
-			"editor/title/run": [
-			]
+			"editor/title/run": []
 		}
 	}
 }

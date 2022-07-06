@@ -8,7 +8,7 @@ exports.activate = function (context) {
 	context.subscriptions.push( vscode.workspace.onDidChangeConfiguration( (event) => {
 		const getCfg = vscode.workspace.getConfiguration ("CustomizeToolbar").get
 		if (event.affectsConfiguration ("CustomizeToolbar.buttonConfig")) {
-			// feature.updateButtonConfig (getCfg("buttonConfig"))
+			feature.updateButtonConfig (getCfg("buttonConfig"))
 			feature.promptToReload ()
 		}
 	}))
