@@ -1,0 +1,152 @@
+{
+	"name": "customize-toolbar",
+	"displayName": "Customize Toolbar",
+	"description": "A dark theme for VS Code made by LLR",
+	"categories": ["Themes"],
+	"keywords": ["black", "AMOLED", "dark", "night", "high-contrast", "theme", "vscode"],
+	"publisher": "liangruliu",
+	"icon": "images/icon.png",
+	"version": "0.1.0",
+	"engines": {
+		"vscode": "^1.56.0"
+	},
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		}
+	},
+	"main": "./sources/extension",
+	"activationEvents": [
+		"onStartupFinished",
+		"onCommand:extension.HiLLR"
+	],
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Customize Toolbar",
+			"properties": {
+				"CustomizeToolbar.testList": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						"string1",
+						"string2"
+					]
+				},
+				"CustomizeToolbar.testDict": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					},
+					"default": {
+						"key1": "string1",
+						"key2": "string2"
+					}
+				},
+				"CustomizeToolbar.testDict2": {
+					"type": "object",
+					"properties": {
+						"key1": {
+							"type": "string",
+							"default": "string1"
+						},
+						"key2": {
+							"type": "string",
+							"default": "string2"
+						}
+					},
+					"default": {
+						"key1": "string1",
+						"key2": "string2"
+					},
+					"additionalProperties": false
+				},
+				"CustomizeToolbar.buttonConfig": {
+					"order": 1,
+					"markdownDescription": "dict1",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"markdownDescription": "name",
+								"type": "string"
+							},
+							"icon": {
+								"markdownDescription": "Either a file path, an object with file paths for dark and light themes, or a theme icon references, like `$(zap)`",
+								"type": "string"
+							},
+							"command": {
+								"markdownDescription": "command",
+								"type": "string"
+							},
+							"include": {
+								"markdownDescription": "included filename extensions",
+								"type": "string"
+							},
+							"exclude": {
+								"markdownDescription": "excluded filename extensions",
+								"type": "string"
+							}
+						},
+						"additionalProperties": false,
+						"default": {
+							"name": "",
+							"icon": "",
+							"command": ""
+						}
+					},
+					"default": [
+						{
+							"name": "Toggle Terminal",
+							"icon": "builtin/terminal.svg",
+							"command": "View.ToggleTerminal"
+						}
+					]
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "customize-toolbar.command-1",
+				"title": "Press Button 1",
+				"category": "Customize Toolbar",
+				"icon": {
+					"light": "./images/ub8_light.svg",
+					"dark": "./images/ub8.svg"
+				}
+			},
+			{
+				"command": "customize-toolbar.command-2",
+				"title": "Press Button 2",
+				"category": "Customize Toolbar",
+				"icon": "$(alert)"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "customize-toolbar.command-1",
+				"key": "ctrl+alt+1",
+				"mac": "shift+cmd+1"
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"group": "navigation@1",
+					"when": "editorTextFocus && config.CustomizeToolbar.buttonConfig.length >= 1",
+					"command": "customize-toolbar.command-1"
+				},
+				{
+					"group": "navigation@2",
+					"when": "editorTextFocus && config.CustomizeToolbar.buttonConfig.length >= 2",
+					"command": "customize-toolbar.command-2"
+				}
+			],
+			"editor/title/run": [
+			]
+		}
+	}
+}
