@@ -15,24 +15,28 @@ exports.updateButtonConfig = function (context, btnCfg) {
 		context.subscriptions.push( vscode.commands.registerCommand( cmdName, () => {
 			vscode.commands.executeCommand (btnCfg[idx]["command"])  // .then(function () {})
 		}))
+		if (typeof btnCfg[idx]["icon"] === "object")
+			for (key in btnCfg[idx]["icon"])
+				if (btnCfg[idx]["icon"][key].startsWith ("builtin/"))
+					btnCfg[idx]["icon"][key] = btnCfg[idx]["icon"][key]
+						.replace ("builtin", "./images/builtinIcons")
 		commands[idx] = {
 			"command": cmdName,
 			"category": "Customize Toolbar",
 			"title": btnCfg[idx]["name"],
 			"icon": btnCfg[idx]["icon"]
 		}
-		if (idx+1 <= 8) {
+		if (idx+1 <= 8)
 			keybindings[idx] = {
 				"command": cmdName,
 				"key": `ctrl+alt+${idx+1}`,
 				"mac": `shift+cmd+${idx+1}`
 			}
-		}
 		buttons[idx] = {
 			"group": `navigation@${idx+1}`,
 			// "when": `config.CustomizeToolbar.buttonConfig.length >= ${idx+1} && resourceFilename =~ ${btnCfg[idx]["when"]}`,
 			"when": btnCfg[idx]["when"] === undefined ? undefined :
-				"resourceFilename =~ " + btnCfg[idx]["when"],
+				`resourceFilename =~ /${btnCfg[idx]["when"]}/`,
 			"command": cmdName
 		}
 	}

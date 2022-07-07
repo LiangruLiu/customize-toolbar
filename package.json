@@ -85,7 +85,7 @@
 								"type": "string"
 							},
 							"icon": {
-								"markdownDescription": "A. A theme icon reference, like `\"\\$(zap)\" (no slash)` (see [doc](https://code.visualstudio.com/api/references/icons-in-labels)) \n\n B. An object with file paths for light and dark themes, like `{ \"light\": \".../a.svg\", \"dark\": \".../b.svg\" }`",
+								"markdownDescription": "A. A theme icon reference, like `\"\\$(zap)\" (no slash)` (see [doc](https://code.visualstudio.com/api/references/icons-in-labels)) \n\n B. An object with absolute paths for light and dark themes, like `{ \"light\": \".../a.svg\", \"dark\": \".../b.svg\" }` (use `builtin` to represent the root directory of this plugin's built-in icons.)",
 								"type": [
 									"string",
 									"object"
@@ -96,7 +96,7 @@
 								"type": "string"
 							},
 							"when": {
-								"markdownDescription": "(Optional) If a regular expression is given, the button will be displayed only if the filename matches it. \n\n For example: `\"/.*\\\\.txt|txt\\\\.md/\"` matches files with a \".txt\" file extension or a \"txt.md\" file name; `\"/(?<!\\\\.txt)$/\"` matches files with a file extension other than \".txt\".",
+								"markdownDescription": "(Optional) If a regular expression is given, the button will be displayed only if the filename matches it. \n\n For example: `\".*\\\\.txt|txt\\\\.md\"` matches files with a \".txt\" file extension or a \"txt.md\" file name; `\"(?<!\\\\.txt)$\"` matches files with a file extension other than \".txt\".",
 								"type": "string"
 							}
 						},
@@ -111,55 +111,34 @@
 						{
 							"name": "Toggle Terminal",
 							"icon": {
-								"light": "./builtinIcons/terminal_light.svg",
-								"dark": "./builtinIcons/terminal_dark.svg"
+								"light": "builtin/terminal_light.svg",
+								"dark": "builtin/terminal_dark.svg"
 							},
 							"command": "View.ToggleTerminal",
-							"when": "/.*\\.json|feature\\.js/"
+							"when": ".*\\.json|feature\\.js"
 						},
 						{
-							"name": "Toggle Terminal",
+							"name": "Toggle bookmarks",
 							"icon": "$(terminal)",
-							"command": "View.ToggleTerminal"
+							"command": "bookmarks.toggle"
+						},
+						{
+							"name": "run",
+							"icon": {
+								"light": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg",
+								"dark": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg"
+							},
+							"command": "View.ToggleTerminal",
+							"when": "(?<!\\.json)$"
 						}
 					]
 				}
 			}
 		},
-		"commands": [
-			{
-				"command": "customize-toolbar.command-1",
-				"title": "Press Button 1",
-				"category": "Customize Toolbar",
-				"icon": "$(zap)"
-			},
-			{
-				"command": "customize-toolbar.command-2",
-				"title": "Press Button 2",
-				"category": "Customize Toolbar",
-				"icon": "$(save-all)"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "customize-toolbar.command-1",
-				"key": "ctrl+alt+1",
-				"mac": "shift+cmd+1"
-			}
-		],
+		"commands": [],
+		"keybindings": [],
 		"menus": {
-			"editor/title": [
-				{
-					"group": "navigation@1",
-					"when": "config.CustomizeToolbar.buttonConfig.length >= 1 && resourceFilename =~",
-					"command": "customize-toolbar.command-1"
-				},
-				{
-					"group": "navigation@2",
-					"when": "config.CustomizeToolbar.buttonConfig.length >= 2",
-					"command": "customize-toolbar.command-2"
-				}
-			],
+			"editor/title": [],
 			"editor/title/run": []
 		}
 	}
