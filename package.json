@@ -27,8 +27,7 @@
 	},
 	"main": "./sources/extension",
 	"activationEvents": [
-		"onStartupFinished",
-		"onCommand:extension.HiLLR"
+		"onStartupFinished"
 	],
 	"contributes": {
 		"configuration": {
@@ -109,27 +108,51 @@
 					},
 					"default": [
 						{
+							"name": "TEST1",
+							"icon": {
+								"light": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg",
+								"dark": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg"
+							},
+							"command": "workbench.action.terminal.toggleTerminal",
+							"when": ".*\\.json|feature\\.js"
+						},
+						{
+							"name": "TEST2",
+							"icon": "$(zap)",
+							"command": "workbench.action.terminal.toggleTerminal",
+							"when": ".*\\.json|feature\\.js"
+						},
+						{
 							"name": "Toggle Terminal",
 							"icon": {
 								"light": "builtin/terminal_light.svg",
 								"dark": "builtin/terminal_dark.svg"
 							},
-							"command": "View.ToggleTerminal",
-							"when": ".*\\.json|feature\\.js"
+							"command": "workbench.action.terminal.toggleTerminal"
 						},
 						{
-							"name": "Toggle bookmarks",
-							"icon": "$(terminal)",
-							"command": "bookmarks.toggle"
-						},
-						{
-							"name": "run",
+							"name": "Save All",
 							"icon": {
-								"light": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg",
-								"dark": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg"
+								"light": "builtin/save_dark.svg",
+								"dark": "builtin/save_dark.svg"
 							},
-							"command": "View.ToggleTerminal",
-							"when": "(?<!\\.json)$"
+							"command": "workbench.action.files.saveAll"
+						},
+						{
+							"name": "Cursor Align",
+							"icon": {
+								"light": "builtin/cursorAlign_dark.svg",
+								"dark": "builtin/cursorAlign_dark.svg"
+							},
+							"command": "yo1dog.cursor-align.alignCursors"
+						},
+						{
+							"name": "Toggle Bookmarks",
+							"icon": {
+								"light": "builtin/bookmark_dark.svg",
+								"dark": "builtin/bookmark_dark.svg"
+							},
+							"command": "bookmarks.toggle"
 						}
 					]
 				}
