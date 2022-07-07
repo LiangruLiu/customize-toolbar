@@ -81,23 +81,22 @@
 						"type": "object",
 						"properties": {
 							"name": {
-								"markdownDescription": "name",
+								"markdownDescription": "The name of the button to display on hover.",
 								"type": "string"
 							},
 							"icon": {
-								"markdownDescription": "Either a file path, an object with file paths for dark and light themes, or a theme icon references, like `$(zap)`",
-								"type": "string"
+								"markdownDescription": "A. A theme icon reference, like `\"\\$(zap)\" (no slash)` (see [doc](https://code.visualstudio.com/api/references/icons-in-labels)) \n\n B. An object with file paths for light and dark themes, like `{ \"light\": \".../a.svg\", \"dark\": \".../b.svg\" }`",
+								"type": [
+									"string",
+									"object"
+								]
 							},
 							"command": {
-								"markdownDescription": "command",
+								"markdownDescription": "The command executed by pressing the button.",
 								"type": "string"
 							},
-							"include": {
-								"markdownDescription": "included filename extensions",
-								"type": "string"
-							},
-							"exclude": {
-								"markdownDescription": "excluded filename extensions",
+							"when": {
+								"markdownDescription": "(Optional) If a regular expression is given, the button will be displayed only if the filename matches it. \n\n For example: `\"/.*\\\\.txt|txt\\\\.md/\"` matches files with a \".txt\" file extension or a \"txt.md\" file name; `\"/(?<!\\\\.txt)$/\"` matches files with a file extension other than \".txt\".",
 								"type": "string"
 							}
 						},
@@ -111,7 +110,16 @@
 					"default": [
 						{
 							"name": "Toggle Terminal",
-							"icon": "builtin/terminal.svg",
+							"icon": {
+								"light": "./builtinIcons/terminal_light.svg",
+								"dark": "./builtinIcons/terminal_dark.svg"
+							},
+							"command": "View.ToggleTerminal",
+							"when": "/.*\\.json|feature\\.js/"
+						},
+						{
+							"name": "Toggle Terminal",
+							"icon": "$(terminal)",
 							"command": "View.ToggleTerminal"
 						}
 					]
@@ -123,16 +131,13 @@
 				"command": "customize-toolbar.command-1",
 				"title": "Press Button 1",
 				"category": "Customize Toolbar",
-				"icon": {
-					"light": "./images/ub8_light.svg",
-					"dark": "./images/ub8.svg"
-				}
+				"icon": "$(zap)"
 			},
 			{
 				"command": "customize-toolbar.command-2",
 				"title": "Press Button 2",
 				"category": "Customize Toolbar",
-				"icon": "$(alert)"
+				"icon": "$(save-all)"
 			}
 		],
 		"keybindings": [
@@ -146,12 +151,12 @@
 			"editor/title": [
 				{
 					"group": "navigation@1",
-					"when": "editorTextFocus && config.CustomizeToolbar.buttonConfig.length >= 1",
+					"when": "config.CustomizeToolbar.buttonConfig.length >= 1 && resourceFilename =~",
 					"command": "customize-toolbar.command-1"
 				},
 				{
 					"group": "navigation@2",
-					"when": "editorTextFocus && config.CustomizeToolbar.buttonConfig.length >= 2",
+					"when": "config.CustomizeToolbar.buttonConfig.length >= 2",
 					"command": "customize-toolbar.command-2"
 				}
 			],

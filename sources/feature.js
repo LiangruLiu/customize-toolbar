@@ -1,4 +1,4 @@
-// 20220706
+// 20220707
 "use strict"
 const vscode = require ("vscode")  // 请忽略提示，千万不要点击自动修复
 const fs = require ("fs")  // 请忽略提示，千万不要点击自动修复
@@ -6,10 +6,41 @@ const path = require ("path")
 
 
 // 本函数通过修改package.json来实现功能
-exports.updateButtonConfig = function (buttonConfig) {
+exports.updateButtonConfig = function (context, btnCfg) {
+	let commands = []
+	let keybindings = []
+	let buttons = []
+	for (let idx = 0; idx < btnCfg.length; idx ++) {
+		const cmdName = `customize-toolbar.command-${idx+1}`
+		context.subscriptions.push( vscode.commands.registerCommand( cmdName, () => {
+			vscode.commands.executeCommand (btnCfg[idx]["command"])  // .then(function () {})
+		}))
+		commands[idx] = {
+			"command": cmdName,
+			"category": "Customize Toolbar",
+			"title": btnCfg[idx]["name"],
+			"icon": btnCfg[idx]["icon"]
+		}
+		if (idx+1 <= 8) {
+			keybindings[idx] = {
+				"command": cmdName,
+				"key": `ctrl+alt+${idx+1}`,
+				"mac": `shift+cmd+${idx+1}`
+			}
+		}
+		buttons[idx] = {
+			"group": `navigation@${idx+1}`,
+			// "when": `config.CustomizeToolbar.buttonConfig.length >= ${idx+1} && resourceFilename =~ ${btnCfg[idx]["when"]}`,
+			"when": btnCfg[idx]["when"] === undefined ? undefined :
+				"resourceFilename =~ " + btnCfg[idx]["when"],
+			"command": cmdName
+		}
+	}
 	const contribFilePath = path.join (__dirname, "../package.json")  // 用__dirname获取当前模块的目录名
 	let data = JSON.parse (fs.readFileSync (contribFilePath))
-	data["contributes"]["commands"] = data["contributes"]["commands"]
+	data["contributes"]["commands"] = commands
+	data["contributes"]["keybindings"] = keybindings
+	data["contributes"]["menus"]["editor/title"] = buttons
 	fs.writeFileSync (contribFilePath, JSON.stringify (data, null, "\t") + "\n")
 }
 
