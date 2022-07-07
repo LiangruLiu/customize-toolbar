@@ -8,8 +8,8 @@ const path = require ("path")
 // 本函数通过修改package.json来实现功能
 exports.updateButtonConfig = function (context, btnCfg) {
 	// 清空用户图标文件夹
-	// for (let file of fs.readdirSync ("../images/userIcons"))
-	// 	fs.unlinkSync (`../images/userIcons/${file}`)
+	for (let file of fs.readdirSync (__dirname+"/../images/userIcons"))
+		fs.unlinkSync (__dirname+`/../images/userIcons/${file}`)
 	let commands = []
 	let keybindings = []
 	let buttons = []
@@ -21,7 +21,7 @@ exports.updateButtonConfig = function (context, btnCfg) {
 					icon[key] = icon[key].replace ("builtin", "./images/builtinIcons")
 				} else {
 					const newName = `btn${idx+1}_${key}.svg`
-					fs.copyFileSync (icon[key], `../images/userIcons/${newName}`)
+					fs.copyFileSync (icon[key], __dirname+`/../images/userIcons/${newName}`)
 					icon[key] = `./images/userIcons/${newName}`
 				}
 		const cmdName = `customize-toolbar.command-${idx+1}`
