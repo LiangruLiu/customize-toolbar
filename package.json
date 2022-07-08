@@ -34,47 +34,9 @@
 			"type": "object",
 			"title": "Customize Toolbar",
 			"properties": {
-				"CustomizeToolbar.testList": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"default": [
-						"string1",
-						"string2"
-					]
-				},
-				"CustomizeToolbar.testDict": {
-					"type": "object",
-					"additionalProperties": {
-						"type": "string"
-					},
-					"default": {
-						"key1": "string1",
-						"key2": "string2"
-					}
-				},
-				"CustomizeToolbar.testDict2": {
-					"type": "object",
-					"properties": {
-						"key1": {
-							"type": "string",
-							"default": "string1"
-						},
-						"key2": {
-							"type": "string",
-							"default": "string2"
-						}
-					},
-					"default": {
-						"key1": "string1",
-						"key2": "string2"
-					},
-					"additionalProperties": false
-				},
 				"CustomizeToolbar.buttonConfig": {
 					"order": 1,
-					"markdownDescription": "dict1",
+					"markdownDescription": "Go to `settings.json` to configure the toolbar buttons. \n\n After the changes, you need to restart VSCode twice as prompted. \n\n If the actual display doesn't match the configuration file due to plugin update or other unknown reasons, you can execute `Customize Toolbar: Refresh` in the [command palette](command:workbench.action.showCommands) ( or simply click this button: [[REFRESH]](command:customize-toolbar.refresh) ).",
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -107,21 +69,6 @@
 						}
 					},
 					"default": [
-						{
-							"name": "TEST1",
-							"icon": {
-								"light": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg",
-								"dark": "D:/0 Documents/Icons/vscode icons/custom/run-dark.svg"
-							},
-							"command": "workbench.action.terminal.toggleTerminal",
-							"when": ".*\\.json|feature\\.js"
-						},
-						{
-							"name": "TEST2",
-							"icon": "$(zap)",
-							"command": "workbench.action.terminal.toggleTerminal",
-							"when": ".*\\.json|feature\\.js"
-						},
 						{
 							"name": "Toggle Terminal",
 							"icon": {
