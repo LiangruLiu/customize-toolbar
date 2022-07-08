@@ -1,4 +1,4 @@
-<!--20220708-->
+<!--20220709-->
 <span id="jump-begin"/> <h1 align="center"> Customize Toolbar </h1>
 
 <!-- <div align=center>
@@ -108,5 +108,5 @@
 -----
 <!-- <p align="center"> Visual Studio Marketplace </p> -->
 <div align=center> <a href="#jump-begin">
-   <img src="https://liangruliu.github.io/images/icon_small.png" width="32pt">
+   <img src="https://liangruliu.github.io/images/vscodeExt/icon-small.png" width="32pt">
 </a> </div>
