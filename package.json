@@ -1,24 +1,29 @@
 {
 	"name": "customize-toolbar",
 	"displayName": "Customize Toolbar",
-	"description": "A dark theme for VS Code made by LLR",
+	"description": "Add custom buttons to the toolbar",
 	"categories": [
-		"Themes"
+		"Other",
+		"Visualization",
+		"Programming Languages"
 	],
 	"keywords": [
-		"black",
-		"AMOLED",
-		"dark",
-		"night",
-		"high-contrast",
-		"theme",
-		"vscode"
+		"shortcut",
+		"button",
+		"tool",
+		"toolbar",
+		"menu",
+		"menubar",
+		"bar",
+		"editor",
+		"terminal",
+		"status"
 	],
 	"publisher": "liangruliu",
 	"icon": "images/icon.png",
 	"version": "0.1.0",
 	"engines": {
-		"vscode": "^1.56.0"
+		"vscode": "^1.60.0"
 	},
 	"capabilities": {
 		"untrustedWorkspaces": {
@@ -46,14 +51,14 @@
 								"type": "string"
 							},
 							"icon": {
-								"markdownDescription": "A. A theme icon reference, like `\"\\$(zap)\" (no slash)` (see [doc](https://code.visualstudio.com/api/references/icons-in-labels)) \n\n B. An object with absolute paths for light and dark themes, like `{ \"light\": \".../a.svg\", \"dark\": \".../b.svg\" }` (use `builtin` to represent the root directory of this plugin's built-in icons.)",
+								"markdownDescription": "**A.** A theme icon reference, like `\"\\$(zap)\" (no slash)` (see [doc](https://code.visualstudio.com/api/references/icons-in-labels)) \n\n **B.** An object with absolute paths for light and dark themes, like `{ \"light\": \".../a.svg\", \"dark\": \".../b.svg\" }` (use `builtin` to represent the root directory of this plugin's built-in icons.)",
 								"type": [
 									"string",
 									"object"
 								]
 							},
 							"command": {
-								"markdownDescription": "The command executed by pressing the button.",
+								"markdownDescription": "The command executed by pressing the button. \n\n Note that you need to fill in the **identifier** instead of the name. Specific information can be found in the [keyboard shortcut list](command:workbench.action.openGlobalKeybindings). \n\n For example, to expand or retract the terminal, write `workbench.action.terminal.toggleTerminal` instead of `view.toggleTerminal`.",
 								"type": "string"
 							},
 							"when": {
@@ -105,7 +110,13 @@
 				}
 			}
 		},
-		"commands": [],
+		"commands": [
+			{
+				"command": "customize-toolbar.refresh",
+				"category": "Customize Toolbar",
+				"title": "Refresh"
+			}
+		],
 		"keybindings": [],
 		"menus": {
 			"editor/title": [],
