@@ -1,14 +1,16 @@
-// 20220707
+// 20220708
 "use strict"
 const vscode = require ("vscode")  // 请忽略提示，千万不要点击自动修复
-const fs = require ("fs")  // 请忽略提示，千万不要点击自动修复
+const fs = require ("fs")
 const path = require ("path")
 
 
 // 本函数通过修改package.json来实现功能
 exports.updateButtonConfig = function (context, btnCfg) {
 	// 清空用户图标文件夹
-	for (let file of fs.readdirSync (__dirname+"/../images/userIcons"))
+	// 遍历对象键用for-in，获取对象值用Object.values，遍历数组值用for-of
+	// for-in和for-of中可以用const
+	for (const file of fs.readdirSync (__dirname+"/../images/userIcons"))
 		fs.unlinkSync (__dirname+`/../images/userIcons/${file}`)
 	let commands = []
 	let keybindings = []
@@ -16,7 +18,7 @@ exports.updateButtonConfig = function (context, btnCfg) {
 	for (let idx = 0; idx < btnCfg.length; idx ++) {
 		const icon = btnCfg[idx]["icon"]
 		if (typeof icon === "object")
-			for (let key in icon)
+			for (const key in icon)
 				if (icon[key].startsWith ("builtin/")) {
 					icon[key] = icon[key].replace ("builtin", "./images/builtinIcons")
 				} else {
@@ -47,6 +49,11 @@ exports.updateButtonConfig = function (context, btnCfg) {
 	}
 	const contribFilePath = path.join (__dirname, "../package.json")  // 用__dirname获取当前模块的目录名
 	let data = JSON.parse (fs.readFileSync (contribFilePath))
+	commands.unshift ({
+		"command": "customize-toolbar.refresh",
+		"category": "Customize Toolbar",
+		"title": "Refresh"
+	})
 	data["contributes"]["commands"] = commands
 	data["contributes"]["keybindings"] = keybindings
 	data["contributes"]["menus"]["editor/title"] = buttons
@@ -58,9 +65,8 @@ exports.promptToReload = function () {
 	const message = "Changed. Please restart VSCode to apply."
 	const action = ["Reload", "Not Now"]
 	vscode.window.showInformationMessage (message, ...action) .then( (selectedAction) => {
-		if (selectedAction === "Reload") {
+		if (selectedAction === "Reload")
 			vscode.commands.executeCommand ("workbench.action.reloadWindow")
-		}
 	})
 }
 
