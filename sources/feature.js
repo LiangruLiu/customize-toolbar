@@ -7,11 +7,17 @@ const path = require ("path")
 
 // 本函数通过修改package.json来实现功能
 exports.updateButtonConfig = function (context, btnCfg) {
+	const userIcoDirForCode = path.join (__dirname, "../images/userIcons")
+	const userIcoDirForCfg = "./images/userIcons"
+	const builtinIcoDirForCfg = "./images/builtinIcons"
+	// 创建用户图标文件夹
+	if (! fs.existsSync (userIcoDirForCode))
+		fs.mkdirSync (userIcoDirForCode)
 	// 清空用户图标文件夹
 	// 遍历对象键用for-in，获取对象值用Object.values，遍历数组值用for-of
 	// for-in和for-of中可以用const
-	for (const file of fs.readdirSync (__dirname+"/../images/userIcons"))
-		fs.unlinkSync (__dirname+`/../images/userIcons/${file}`)
+	for (const filename of fs.readdirSync (userIcoDirForCode))
+		fs.unlinkSync (path.join (userIcoDirForCode, filename))
 	let commands = []
 	let keybindings = []
 	let buttons = []
@@ -20,11 +26,11 @@ exports.updateButtonConfig = function (context, btnCfg) {
 		if (typeof icon === "object")
 			for (const key in icon)
 				if (icon[key].startsWith ("builtin/")) {
-					icon[key] = icon[key].replace ("builtin", "./images/builtinIcons")
+					icon[key] = icon[key].replace ("builtin", builtinIcoDirForCfg)
 				} else {
 					const newName = `btn${idx+1}_${key}.svg`
-					fs.copyFileSync (icon[key], __dirname+`/../images/userIcons/${newName}`)
-					icon[key] = `./images/userIcons/${newName}`
+					fs.copyFileSync (icon[key], path.join (userIcoDirForCode, newName))
+					icon[key] = path.join (userIcoDirForCfg, newName)
 				}
 		const cmdName = `customize-toolbar.command-${idx+1}`
 		commands[idx] = {
