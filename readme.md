@@ -46,9 +46,10 @@
 1. 插件代码所在位置为（`Windows` 上的默认路径）：<br/>
    `C:/Users/<NAME>/.vscode/extensions/liangruliu.customize-toolbar-<VER>`
 2. <span id="jump-ch"/>
-   我制作这个插件，一方面是需要这个功能，另一方面其实也是一个学习的过程，因为我既不太会 Node.js，也不太会 VSCode 插件开发。
-   目前该插件的功能的代码实现逻辑很不好：我只会静态设置按钮，没找到动态设置按钮的方法，所以每次修改设置，其实是在通过文件读写修改源码的方式来修改功能。这也正是每次应用更改都需要重启两次的原因。
-   我甚至认为这个程序有出错的可能，因此添加了手动刷新的功能。
+   我制作这个插件，一方面是需要这个功能，另一方面其实也是一个学习的过程，因为我既不太会 Node.js，也不太会 VSCode 插件开发。<br/>
+   目前该插件的功能的代码实现逻辑很不好：我只会静态设置按钮，没找到动态设置按钮的方法，所以每次修改设置，其实是在通过文件读写修改源码的方式来修改功能。这也正是每次应用更改都需要重启两次的原因。<br/>
+   我甚至认为这个程序有出错的可能，因此添加了手动刷新的功能。<br/>
+
    如果你有解决这个问题的思路，或者有什么建议，欢迎通过邮箱 <LiangruLiu@outlook.com> 与我联系。
 
 
@@ -93,9 +94,10 @@
 1. The location of the plugin code is (Default path on `Windows`): <br/>
    `C:/Users/<NAME>/.vscode/extensions/liangruliu.customize-toolbar-<VER>`
 2. <span id="jump-en"/>
-   I created this plugin. On the one hand, I need this feature; on the other hand, it's actually a learning process, because I'm neither good at Node.js nor VSCode plugin development.
-   At present, the code implementation logic of this plugin's feature is very bad: I only know how to set buttons statically and haven't found a way to set them dynamically, so behind each modification of the settings, it's actually modifying the source code through file reading and writing to implement changes to the functionality. That's why you need to restart twice every time you apply a change.
-   I even thought there's a possibility of program errors in this program, so I added the ability to manually refresh it.
+   I created this plugin. On the one hand, I need this feature; on the other hand, it's actually a learning process, because I'm neither good at Node.js nor VSCode plugin development. <br/>
+   At present, the code implementation logic of this plugin's feature is very bad: I only know how to set buttons statically and haven't found a way to set them dynamically, so behind each modification of the settings, it's actually modifying the source code through file reading and writing to implement changes to the functionality. That's why you need to restart twice every time you apply a change. <br/>
+   I even thought there's a possibility of program errors in this program, so I added the ability to manually refresh it. <br/>
+
    If you have ideas to solve this problem or have any suggestions, feel free to contact me via email <LiangruLiu@outlook.com>.
 
 
